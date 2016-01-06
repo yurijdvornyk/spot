@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotLibrary", "SpotLibrary\SpotLibrary.csproj", "{03317EF8-8517-4DF9-89CE-523D07AB477A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotTestApp", "SpotTestApp\SpotTestApp.csproj", "{73C1C07D-B2F5-496E-9ADA-60403DBC3449}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03317EF8-8517-4DF9-89CE-523D07AB477A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03317EF8-8517-4DF9-89CE-523D07AB477A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03317EF8-8517-4DF9-89CE-523D07AB477A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03317EF8-8517-4DF9-89CE-523D07AB477A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73C1C07D-B2F5-496E-9ADA-60403DBC3449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73C1C07D-B2F5-496E-9ADA-60403DBC3449}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73C1C07D-B2F5-496E-9ADA-60403DBC3449}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73C1C07D-B2F5-496E-9ADA-60403DBC3449}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

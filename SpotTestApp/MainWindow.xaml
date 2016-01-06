@@ -1,0 +1,97 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SpotTestApp"
+        xmlns:SpotLibrary="clr-namespace:SpotLibrary;assembly=SpotLibrary" x:Class="SpotTestApp.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800" MinHeight="360" MinWidth="500">
+    <Grid>
+        <SpotLibrary:SpotControl Name="spot" Margin="215,10,10,10"/>
+        <ScrollViewer Margin="10,10,0,10" HorizontalAlignment="Left" Width="220">
+            <StackPanel>
+                <GroupBox x:Name="groupBox" Header="New graph">
+                    <StackPanel>
+                        <DockPanel Margin="0,2,0,1">
+                            <TextBlock Text="Name:" VerticalAlignment="Center" Margin="0,0,5,0" DockPanel.Dock="Left"/>
+                            <TextBox Name="tbName" VerticalAlignment="Center" DockPanel.Dock="Right"/>
+                        </DockPanel>
+                        <DockPanel Margin="0,1,0,1">
+                            <TextBlock Text="Function:" VerticalAlignment="Center" Margin="0,0,5,0" DockPanel.Dock="Left"/>
+                            <ComboBox Name="cbFunctions" VerticalAlignment="Center" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="120"/>
+                        </DockPanel>
+                        <DockPanel Margin="0,1,0,1">
+                            <TextBlock Text="Left bound:" VerticalAlignment="Center" Margin="0,0,5,0" DockPanel.Dock="Left"/>
+                            <TextBox Name="tbLeftBound" VerticalAlignment="Center" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="100"/>
+                        </DockPanel>
+                        <DockPanel Margin="0,1,0,1">
+                            <TextBlock Text="Right bound:" VerticalAlignment="Center" Margin="0,0,5,0" DockPanel.Dock="Left"/>
+                            <TextBox Name="tbRightBound" VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right" Width="100"/>
+                        </DockPanel>
+                        <DockPanel Margin="0,1,0,1">
+                            <TextBlock Text="Seperations:" VerticalAlignment="Center" Margin="0,0,5,0" DockPanel.Dock="Left"/>
+                            <TextBox Name="tbN" VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right" Width="100"/>
+                        </DockPanel>
+                        <DockPanel Margin="0,1,0,1">
+                            <TextBlock Text="Line width:" VerticalAlignment="Center" Margin="0,0,5,0" DockPanel.Dock="Left"/>
+                            <TextBox Name="tbLineWidth" VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right" Width="100"/>
+                        </DockPanel>
+                        <DockPanel Margin="0,1,0,1">
+                            <TextBlock Text="Color:" VerticalAlignment="Center" Margin="0,0,5,0" DockPanel.Dock="Left"/>
+                            <ComboBox Name="cbColors" VerticalAlignment="Center" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="120">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" Background="{Binding}" Margin="1"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </DockPanel>
+                        <Button Margin="0,1,0,0" Content="Add" Name="btnAdd" Click="btnAdd_Click"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Spot options">
+                    <StackPanel>
+                        <DockPanel Margin="0,2,0,1">
+                            <TextBlock Text="Header:" VerticalAlignment="Center" Margin="0,0,5,0" DockPanel.Dock="Left"/>
+                            <TextBox Name="tbHeader" VerticalAlignment="Center" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="120" Text="Spot graph title"/>
+                        </DockPanel>
+                        <DockPanel Margin="0,2,0,1">
+                            <TextBlock Text="Grid horizontal size:" VerticalAlignment="Center" Margin="0,0,5,0" DockPanel.Dock="Left"/>
+                            <TextBox Name="tbGridXSize" VerticalAlignment="Center" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="60" Text="60"/>
+                        </DockPanel>
+                        <DockPanel Margin="0,2,0,1">
+                            <TextBlock Text="Grid vertical size:" VerticalAlignment="Center" Margin="0,0,5,0" DockPanel.Dock="Left"/>
+                            <TextBox Name="tbGridYSize" VerticalAlignment="Center" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="60" Text="60"/>
+                        </DockPanel>
+                        <DockPanel Margin="0,1,0,1">
+                            <TextBlock Text="Show grid:" VerticalAlignment="Center" Margin="0,0,5,0" DockPanel.Dock="Left"/>
+                            <CheckBox Name="cbShowGrid" VerticalAlignment="Center" DockPanel.Dock="Right" HorizontalAlignment="Right" IsChecked="True"/>
+                        </DockPanel>
+                        <DockPanel Margin="0,1,0,1">
+                            <TextBlock Text="Grid color:" VerticalAlignment="Center" Margin="0,0,5,0" DockPanel.Dock="Left"/>
+                            <ComboBox Name="cbGridColor" VerticalAlignment="Center" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="120" SelectedIndex="0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" Background="{Binding}" Margin="1"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </DockPanel>
+                        <DockPanel Margin="0,1,0,1">
+                            <TextBlock Text="Show graph info:" VerticalAlignment="Center" Margin="0,0,5,0" DockPanel.Dock="Left"/>
+                            <CheckBox Name="cbShowInfo" VerticalAlignment="Center" DockPanel.Dock="Right" HorizontalAlignment="Right" IsChecked="True"/>
+                        </DockPanel>
+                        <Button Margin="0,1,0,0" Content="Update" Name="btnApplyChanges" Click="btnApplyChanges_Click"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Graphs">
+                    <StackPanel>
+                        <ListBox Name="lbGraphs" MinHeight="24" ItemsSource="{Binding ElementName=spot, Path=Graphs, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" DisplayMemberPath="Name"/>
+                        <Button Content="Remove" Name="btnRemove" Margin="0,2,0,0" Click="btnRemove_Click"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

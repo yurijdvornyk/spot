@@ -1,0 +1,11 @@
+D:\Programs\Spot_DrawingTool\Spot\SpotLibrary\obj\Debug\SpotControl.g.cs
+D:\Programs\Spot_DrawingTool\Spot\SpotLibrary\obj\Debug\SpotLibrary_MarkupCompile.cache
+D:\Programs\Spot_DrawingTool\Spot\SpotLibrary\obj\Debug\SpotLibrary_MarkupCompile.lref
+D:\Programs\Spot_DrawingTool\Spot\SpotLibrary\bin\Debug\SpotLibrary.dll
+D:\Programs\Spot_DrawingTool\Spot\SpotLibrary\bin\Debug\SpotLibrary.pdb
+D:\Programs\Spot_DrawingTool\Spot\SpotLibrary\obj\Debug\SpotControl.baml
+D:\Programs\Spot_DrawingTool\Spot\SpotLibrary\obj\Debug\SpotLibrary.g.resources
+D:\Programs\Spot_DrawingTool\Spot\SpotLibrary\obj\Debug\SpotLibrary.Properties.Resources.resources
+D:\Programs\Spot_DrawingTool\Spot\SpotLibrary\obj\Debug\SpotLibrary.csproj.GenerateResource.Cache
+D:\Programs\Spot_DrawingTool\Spot\SpotLibrary\obj\Debug\SpotLibrary.dll
+D:\Programs\Spot_DrawingTool\Spot\SpotLibrary\obj\Debug\SpotLibrary.pdb
