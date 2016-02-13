@@ -83,6 +83,7 @@
                             <CheckBox Name="cbShowInfo" VerticalAlignment="Center" DockPanel.Dock="Right" HorizontalAlignment="Right" IsChecked="True"/>
                         </DockPanel>
                         <Button Margin="0,1,0,0" Content="Update" Name="btnApplyChanges" Click="btnApplyChanges_Click"/>
+                        <Button Margin="0,1,0,0" Content="Save as image" Name="btnSaveAsImage" Click="btnSaveAsImage_Click"/>
                     </StackPanel>
                 </GroupBox>
                 <GroupBox Header="Graphs">

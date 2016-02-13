@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              x:Name="MultiGraphControl"
              d:DesignHeight="300" d:DesignWidth="300" SizeChanged="SpotControl_SizeChanged">
-    <Grid>
+    <Grid Margin="0" Name="visualToRender">
         <Grid.Resources>
             <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
         </Grid.Resources>

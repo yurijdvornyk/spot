@@ -141,6 +141,13 @@ namespace SpotTestApp
             spot.VerticalAxisName = yAxis;
             spot.Update();
         }
+
+        private void btnSaveAsImage_Click(object sender, RoutedEventArgs e)
+        {
+            spot.SaveAsImage("result.png", SpotLibrary.PlotImageFormat.png);
+            spot.SaveAsImage("result.bmp", SpotLibrary.PlotImageFormat.bmp);
+            spot.SaveAsImage("result.jpg", SpotLibrary.PlotImageFormat.jpg);
+        }
     }
 
     public enum Functions { x, Sqr, Sqrt, Sin, Cos, Ln }

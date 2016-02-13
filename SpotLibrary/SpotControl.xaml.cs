@@ -632,15 +632,24 @@ namespace SpotLibrary
         /// <param name="format">File format</param>
         public void SaveAsImage(string filename, PlotImageFormat format)
         {
+            BitmapEncoder encoder = null;
             switch (format)
             {
+                case PlotImageFormat.bmp:
+                    encoder = new BmpBitmapEncoder();
+                    break;
                 case PlotImageFormat.png:
-                    var encoder = new PngBitmapEncoder();
-                    saveUsingEncoder(filename, encoder);
+                    encoder = new PngBitmapEncoder();
+                    break;
+                case PlotImageFormat.jpg:
+                    encoder = new JpegBitmapEncoder();
                     break;
                 default:
+                    encoder = new PngBitmapEncoder();
                     break;
             }
+
+            saveUsingEncoder(filename, encoder);
         }
 
         private void saveUsingEncoder(string fileName, BitmapEncoder encoder)
@@ -648,7 +657,7 @@ namespace SpotLibrary
             RenderTargetBitmap bitmap = new RenderTargetBitmap(
                    (int)this.ActualWidth,
                    (int)this.ActualHeight, 96, 96, PixelFormats.Pbgra32);
-            bitmap.Render(this);
+            bitmap.Render(visualToRender);
             BitmapFrame frame = BitmapFrame.Create(bitmap);
             encoder.Frames.Add(frame);
 
@@ -683,5 +692,5 @@ namespace SpotLibrary
         #endregion
     }
 
-    public enum PlotImageFormat { png };
+    public enum PlotImageFormat { png, jpg, bmp };
 }
