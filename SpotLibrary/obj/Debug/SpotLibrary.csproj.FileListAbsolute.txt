@@ -9,4 +9,3 @@ D:\Programs\Spot_DrawingTool\Spot\SpotLibrary\obj\Debug\SpotLibrary.Properties.R
 D:\Programs\Spot_DrawingTool\Spot\SpotLibrary\obj\Debug\SpotLibrary.csproj.GenerateResource.Cache
 D:\Programs\Spot_DrawingTool\Spot\SpotLibrary\obj\Debug\SpotLibrary.dll
 D:\Programs\Spot_DrawingTool\Spot\SpotLibrary\obj\Debug\SpotLibrary.pdb
-D:\Programs\Spot_DrawingTool\Spot\SpotLibrary\obj\Debug\SpotLibrary.csprojResolveAssemblyReference.cache

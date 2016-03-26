@@ -95,7 +95,7 @@ namespace SpotLibrary
                 else { lvInfo.Visibility = Visibility.Hidden; }
 
                 // Just to make Graphs collection update. Without it the list of files can't update dynamically.
-                Graphs.Add(new Polyline());
+                Graphs.Add(new Graph());
                 Graphs.Remove(Graphs.Last());
             }
         }
@@ -110,7 +110,7 @@ namespace SpotLibrary
         /// <summary>
         /// Collection of graphs
         /// </summary>
-        public ObservableCollection<Polyline> Graphs { get; set; }
+        public ObservableCollection<Graph> Graphs { get; set; }
 
         #endregion
 
@@ -122,7 +122,7 @@ namespace SpotLibrary
         public SpotControl()
         {
             InitializeComponent();
-            Graphs = new ObservableCollection<Polyline>();
+            Graphs = new ObservableCollection<Graph>();
             ((INotifyCollectionChanged)lvInfo.Items).CollectionChanged += lvInfo_CollectionChanged;
             ShowGrid = true;
             GridColor = Brushes.Gray;
@@ -159,7 +159,7 @@ namespace SpotLibrary
             bool showGraphInfo = false)
         {
             InitializeComponent();
-            Graphs = new ObservableCollection<Polyline>();
+            Graphs = new ObservableCollection<Graph>();
             ((INotifyCollectionChanged)lvInfo.Items).CollectionChanged += lvInfo_CollectionChanged;
             SpotName = name;
             HorizontalAxisName = horizontalAxis;
@@ -196,11 +196,7 @@ namespace SpotLibrary
             }
             pl.Stroke = color;
             pl.StrokeThickness = thickness;
-            if (!string.IsNullOrEmpty(name))
-            {
-                pl.Name = name;
-            }
-            Graphs.Add(pl);
+            Graphs.Add(new Graph(name, pl));
             UpdateBounds();
             Update();
             if (ShowGraphInfo)
@@ -240,7 +236,7 @@ namespace SpotLibrary
             {
                 foreach (var g in Graphs)
                 {
-                    if (g.Name == name)
+                    if (g.GraphName == name)
                     {
                         Graphs.Remove(g);
                         break;
@@ -264,7 +260,7 @@ namespace SpotLibrary
         {
             foreach (var p in points)
             {
-                Graphs[index].Points.Add(p);
+                Graphs[index].GraphPolyline.Points.Add(p);
             }
             UpdateBounds();
             Update();
@@ -280,11 +276,11 @@ namespace SpotLibrary
             bool success = false;
             foreach (var g in Graphs)
             {
-                if (g.Name == name)
+                if (g.GraphName == name)
                 {
                     foreach (var p in points)
                     {
-                        g.Points.Add(p);
+                        g.GraphPolyline.Points.Add(p);
                     }
                     success = true;
                     break;
@@ -310,11 +306,11 @@ namespace SpotLibrary
         {
             try
             {
-                foreach (var p in Graphs[index].Points)
+                foreach (var p in Graphs[index].GraphPolyline.Points)
                 {
                     if (points.Contains(p))
                     {
-                        Graphs[index].Points.Remove(p);
+                        Graphs[index].GraphPolyline.Points.Remove(p);
                     }
                 }
                 UpdateBounds();
@@ -336,13 +332,13 @@ namespace SpotLibrary
             bool success = false;
             foreach (var g in Graphs)
             {
-                if (g.Name == name)
+                if (g.GraphName == name)
                 {
-                    foreach (var p in g.Points)
+                    foreach (var p in g.GraphPolyline.Points)
                     {
                         if (points.Contains(p))
                         {
-                            g.Points.Remove(p);
+                            g.GraphPolyline.Points.Remove(p);
                         }
                     }
                     success = true;
@@ -390,17 +386,17 @@ namespace SpotLibrary
                 Ymax = 0;
                 if (Graphs.Count > 0)
                 {
-                    if (Graphs[0].Points.Count > 0)
+                    if (Graphs[0].GraphPolyline.Points.Count > 0)
                     {
-                        Xmin = Graphs[0].Points[0].X;
-                        Ymin = Graphs[0].Points[0].Y;
-                        Xmax = Graphs[0].Points[0].X;
-                        Ymax = Graphs[0].Points[0].Y;
+                        Xmin = Graphs[0].GraphPolyline.Points[0].X;
+                        Ymin = Graphs[0].GraphPolyline.Points[0].Y;
+                        Xmax = Graphs[0].GraphPolyline.Points[0].X;
+                        Ymax = Graphs[0].GraphPolyline.Points[0].Y;
                     }
                 }
                 foreach (var graph in Graphs)
                 {
-                    var points = graph.Points.ToArray();
+                    var points = graph.GraphPolyline.Points.ToArray();
                     if (points.Length > 0)
                     {
                         foreach (var p in points)
@@ -417,7 +413,7 @@ namespace SpotLibrary
                 bool isVerticalLine = true;
                 foreach (var graph in Graphs)
                 {
-                    var points = graph.Points.ToArray();
+                    var points = graph.GraphPolyline.Points.ToArray();
                     if (points.Length > 0)
                     {
                         foreach (var p in points)
@@ -454,27 +450,27 @@ namespace SpotLibrary
             {
                 foreach (var graph in Graphs)
                 {
-                    if (graph.Points.Count == 1)
+                    if (graph.GraphPolyline.Points.Count == 1)
                     {
                         Ellipse el = new Ellipse();
-                        el.Width = graph.StrokeThickness;
-                        el.Height = graph.StrokeThickness;
-                        Point p = updateCoordinates(graph.Points[0]);
+                        el.Width = graph.GraphPolyline.StrokeThickness;
+                        el.Height = graph.GraphPolyline.StrokeThickness;
+                        Point p = updateCoordinates(graph.GraphPolyline.Points[0]);
                         Canvas.SetLeft(el, p.X - el.Width / 2);
                         Canvas.SetTop(el, p.Y - el.Height / 2);
 
-                        el.Fill = graph.Stroke;
+                        el.Fill = graph.GraphPolyline.Stroke;
                         MainCanvas.Children.Add(el);
                     }
-                    else if (graph.Points.Count > 1)
+                    else if (graph.GraphPolyline.Points.Count > 1)
                     {
                         Polyline pl = new Polyline();
-                        foreach (var p in graph.Points)
+                        foreach (var p in graph.GraphPolyline.Points)
                         {
                             pl.Points.Add(updateCoordinates(p));
                         }
-                        pl.Stroke = graph.Stroke;
-                        pl.StrokeThickness = graph.StrokeThickness;
+                        pl.Stroke = graph.GraphPolyline.Stroke;
+                        pl.StrokeThickness = graph.GraphPolyline.StrokeThickness;
                         MainCanvas.Children.Add(pl);
                     }
                 }

@@ -52,6 +52,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Graph.cs" />
     <Compile Include="SpotControl.xaml.cs">
       <DependentUpon>SpotControl.xaml</DependentUpon>
       <SubType>Code</SubType>
